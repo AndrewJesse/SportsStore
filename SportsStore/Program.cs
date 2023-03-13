@@ -11,5 +11,6 @@ builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 var app = builder.Build(); 
 app.UseStaticFiles(); 
 
-app.MapDefaultControllerRoute(); 
+app.MapDefaultControllerRoute();
+SeedData.EnsurePopulated(app);
 app.Run();
