@@ -59,5 +59,6 @@ namespace SportsStore.Tests
             Assert.Equal("P4", prodArray[0].Name);
             Assert.Equal("P5", prodArray[1].Name);
         }
+
     }
 }
