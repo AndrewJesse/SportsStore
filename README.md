@@ -1,6 +1,6 @@
 <h1>Sports Store</h1>
 
-An e-commerce web application built using ASP.NET Core, showcasing the use of testing, dependency injection, and the repository pattern.
+The SportsStore application follows a clean and modular design, adhering to industry best practices and SOLID principles. It's a well-structured, scalable, and maintainable e-commerce solution built on the .NET framework, showcasing efficient implementation of essential features and modern development techniques.
 
 
 ## Features
