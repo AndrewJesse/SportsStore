@@ -10,6 +10,8 @@
         // An instance of PagingInfo containing pagination details for the products list.
         // Default value is a new PagingInfo object.
         public PagingInfo PagingInfo { get; set; } = new();
+
+        public string? CurrentCategory { get; set; }
     }
 
 }
