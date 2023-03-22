@@ -11,8 +11,10 @@ namespace SportsStore.Components
             repository = repo; 
         }
         public IViewComponentResult Invoke() { 
-            return View(repository.Products.Select
-                (x => x.Category).Distinct().OrderBy(x => x)); 
+            // Sets the Viewbag.SelectedCategory to hold the the 'category' from the RouteData
+            ViewBag.SelectedCategory = RouteData?.Values["category"]; 
+
+            return View(repository.Products .Select(x => x.Category) .Distinct() .OrderBy(x => x));
         }
     }
 }

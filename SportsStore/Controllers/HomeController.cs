@@ -9,7 +9,8 @@ namespace SportsStore.Controllers
     {
         private IStoreRepository repository;
         public int PageSize = 4;
-        public HomeController(IStoreRepository repo) => repository = repo;
+        public HomeController(IStoreRepository repo) 
+            => repository = repo;
 
         public ViewResult Index(string? category, int productPage = 1) 
             => View(new ProductsListViewModel { 
