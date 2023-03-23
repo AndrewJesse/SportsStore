@@ -3,6 +3,7 @@ using SportsStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -34,7 +35,7 @@ namespace SportsStore.Tests
         public void Can_Add_Quantity_For_Existing_Lines()
         {
             Product p1 = new Product { ProductID = 1, Name = "P1" };
-            Product p2 = new Product { ProductID = 12, Name = "P2" };
+            Product p2 = new Product { ProductID = 2, Name = "P2" };
             Cart target = new Cart();
 
             // Act
@@ -47,7 +48,30 @@ namespace SportsStore.Tests
             Assert.Equal(2, results.Length);
             Assert.Equal(11, results[0].Quantity);
             Assert.Equal(1, results[1].Quantity);
+        }
+        [Fact]
+        public void Can_Remove_Line()
+        {
+            // Arrange
+            Product p1 = new Product { ProductID = 1, Name = "P1" };
+            Product p2 = new Product { ProductID = 2, Name = "P2" };
+            Product p3 = new Product { ProductID = 3, Name = "P3" };
+            
+            // Arrange
+            Cart target = new Cart();
 
+            // Arrange
+            target.AddItem(p1, 1);
+            target.AddItem(p2, 3);
+            target.AddItem(p3, 5);
+            target.AddItem(p2, 1);
+
+            // Act
+            target.RemoveLine(p2);
+
+            // Assert
+            Assert.Empty(target.Lines.Where(c => c.Product == p2));
+            Assert.Equal(2, target.Lines.Count);
         }
     }
 }
