@@ -10,7 +10,7 @@ using Xunit;
 
 namespace SportsStore.Tests
 {
-    
+
     public class CartTest
     {
         [Fact]
@@ -39,9 +39,9 @@ namespace SportsStore.Tests
             Cart target = new Cart();
 
             // Act
-            target.AddItem(p1, 1); 
-            target.AddItem(p2, 1); 
-            target.AddItem(p1, 10); 
+            target.AddItem(p1, 1);
+            target.AddItem(p2, 1);
+            target.AddItem(p1, 10);
             CartLine[] results = (target.Lines ?? new())
                 .OrderBy(c => c.Product.ProductID).ToArray();
 
@@ -56,7 +56,7 @@ namespace SportsStore.Tests
             Product p1 = new Product { ProductID = 1, Name = "P1" };
             Product p2 = new Product { ProductID = 2, Name = "P2" };
             Product p3 = new Product { ProductID = 3, Name = "P3" };
-            
+
             // Arrange
             Cart target = new Cart();
 
@@ -72,6 +72,23 @@ namespace SportsStore.Tests
             // Assert
             Assert.Empty(target.Lines.Where(c => c.Product == p2));
             Assert.Equal(2, target.Lines.Count);
+        }
+        [Fact]
+        public void Calculate_Cart_Total()
+        {
+            // Arrange - create some test products
+            Product p1 = new Product { ProductID = 1, Name = "P1", Price = 100M };
+            Product p2 = new Product { ProductID = 2, Name = "P2", Price = 50M };
+            // Arrange - create a new cart
+            Cart target = new Cart();
+            // Act
+            target.AddItem(p1, 1);
+            target.AddItem(p2, 1);
+            target.AddItem(p1, 3);
+            decimal result = target.ComputeTotalValue();
+
+            // Assert
+            Assert.Equal(450M, result);
         }
     }
 }
