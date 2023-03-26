@@ -32,6 +32,9 @@ var app = builder.Build();
 app.UseStaticFiles();
 app.UseSession();
 
+app.UseAuthentication(); 
+app.UseAuthorization();
+
 app.MapControllerRoute("catpage", "{category}/Page{productPage:int}", 
     new { Controller = "Home", action = "Index" });
 app.MapControllerRoute("page", "Page{productPage:int}", 
@@ -46,6 +49,7 @@ app.MapRazorPages();
 app.MapBlazorHub();
 app.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
 
-SeedData.EnsurePopulated(app); 
+SeedData.EnsurePopulated(app);
+IdentitySeedData.EnsurePopulated(app);
 
 app.Run();
