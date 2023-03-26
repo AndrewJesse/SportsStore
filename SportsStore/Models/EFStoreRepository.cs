@@ -8,7 +8,7 @@
         }
         public IQueryable<Product> Products => context.Products;
         public void CreateProduct(Product p) 
-        { 
+        {
             context.Add(p); 
             context.SaveChanges(); 
         }
